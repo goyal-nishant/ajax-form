@@ -9,9 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = trim($_POST['Password']);
     $confirm_password = trim($_POST['confirm_password']);
     
-    if (empty($name) || empty($email) || empty($password) || empty($confirm_password)) {
-        echo json_encode(['success' => false, 'message' => 'Please fill all fields']);
-    } elseif ($password !== $confirm_password) {
+    if ($password !== $confirm_password) {
         echo json_encode(['success' => false, 'message' => 'Passwords do not match']);
     } else {
         $sql = "SELECT * FROM user WHERE email = '$email'";
@@ -32,6 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             $stmt->close();
         }
-    }
+    } 
 }
 ?>
